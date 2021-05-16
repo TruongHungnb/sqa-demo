@@ -12,12 +12,12 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_tenChuHo">Ten Chu Ho</label>
+          <label class="form-control-label" for="field_tenChuHo">Tên chủ hộ</label>
           <input type="text" class="form-control" name="tenChuHo" id="field_tenChuHo" data-cy="tenChuHo" formControlName="tenChuHo" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_thangSuDung">Thang Su Dung</label>
+          <label class="form-control-label" for="field_thangSuDung">Tháng sử dụng</label>
           <input
             type="number"
             class="form-control"
@@ -29,37 +29,37 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_chiSoMoi">Chi So Moi</label>
+          <label class="form-control-label" for="field_chiSoMoi">Chỉ số mới</label>
           <input type="number" class="form-control" name="chiSoMoi" id="field_chiSoMoi" data-cy="chiSoMoi" formControlName="chiSoMoi" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_chiSoCu">Chi So Cu</label>
+          <label class="form-control-label" for="field_chiSoCu">Chỉ số cũ</label>
           <input type="number" class="form-control" name="chiSoCu" id="field_chiSoCu" data-cy="chiSoCu" formControlName="chiSoCu" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_soNuoc">So Nuoc</label>
+          <label class="form-control-label" for="field_soNuoc">Số nước</label>
           <input type="number" class="form-control" name="soNuoc" id="field_soNuoc" data-cy="soNuoc" formControlName="soNuoc" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_thanhTien">Thanh Tien</label>
+          <label class="form-control-label" for="field_thanhTien">Thành tiền</label>
           <input type="number" class="form-control" name="thanhTien" id="field_thanhTien" data-cy="thanhTien" formControlName="thanhTien" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_tienThue">Tien Thue</label>
+          <label class="form-control-label" for="field_tienThue">Tiền thuế</label>
           <input type="number" class="form-control" name="tienThue" id="field_tienThue" data-cy="tienThue" formControlName="tienThue" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_tongTien">Tong Tien</label>
+          <label class="form-control-label" for="field_tongTien">Tổng tiền</label>
           <input type="number" class="form-control" name="tongTien" id="field_tongTien" data-cy="tongTien" formControlName="tongTien" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_ngayThanhToan">Ngay Thanh Toan</label>
+          <label class="form-control-label" for="field_ngayThanhToan">Ngày thanh toán</label>
           <div class="d-flex">
             <input
               id="field_ngayThanhToan"
@@ -74,7 +74,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_trangThaiThanhToan">Trang Thai Thanh Toan</label>
+          <label class="form-control-label" for="field_trangThaiThanhToan">Trạng thái thanh toán</label>
           <input
             type="text"
             class="form-control"
@@ -86,7 +86,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_thue">Thue</label>
+          <label class="form-control-label" for="field_thue">Thuế</label>
           <select class="form-control" id="field_thue" data-cy="thue" name="thue" formControlName="thue">
             <option [ngValue]="null"></option>
             <option
@@ -99,7 +99,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_bacHoNgheo">Bac Ho Ngheo</label>
+          <label class="form-control-label" for="field_bacHoNgheo">Bậc hộ nghèo</label>
           <select class="form-control" id="field_bacHoNgheo" data-cy="bacHoNgheo" name="bacHoNgheo" formControlName="bacHoNgheo">
             <option [ngValue]="null"></option>
             <option
@@ -114,7 +114,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_bacHoThuong">Bac Ho Thuong</label>
+          <label class="form-control-label" for="field_bacHoThuong">Bậc hộ thường</label>
           <select class="form-control" id="field_bacHoThuong" data-cy="bacHoThuong" name="bacHoThuong" formControlName="bacHoThuong">
             <option [ngValue]="null"></option>
             <option
@@ -131,7 +131,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_giadinh">Giadinh</label>
+          <label class="form-control-label" for="field_giadinh">Hộ gia đình</label>
           <select class="form-control" id="field_giadinh" data-cy="giadinh" name="giadinh" formControlName="giadinh">
             <option [ngValue]="null"></option>
             <option
@@ -146,7 +146,7 @@
 
       <div>
         <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
         </button>
 
         <button
@@ -156,7 +156,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
         </button>
       </div>
     </form>

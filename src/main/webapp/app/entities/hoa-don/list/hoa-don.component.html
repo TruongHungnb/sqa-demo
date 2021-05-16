@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh List</span>
+        <span>Làm mới danh sách</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/hoa-don/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Hoa Don </span>
+        <span> Tạo mới hóa đơn </span>
       </button>
     </div>
   </h2>
@@ -33,20 +33,20 @@
       <thead>
         <tr>
           <th scope="col"><span>ID</span></th>
-          <th scope="col"><span>Ten Chu Ho</span></th>
-          <th scope="col"><span>Thang Su Dung</span></th>
-          <th scope="col"><span>Chi So Moi</span></th>
-          <th scope="col"><span>Chi So Cu</span></th>
-          <th scope="col"><span>So Nuoc</span></th>
-          <th scope="col"><span>Thanh Tien</span></th>
-          <th scope="col"><span>Tien Thue</span></th>
-          <th scope="col"><span>Tong Tien</span></th>
-          <th scope="col"><span>Ngay Thanh Toan</span></th>
-          <th scope="col"><span>Trang Thai Thanh Toan</span></th>
-          <th scope="col"><span>Thue</span></th>
-          <th scope="col"><span>Bac Ho Ngheo</span></th>
-          <th scope="col"><span>Bac Ho Thuong</span></th>
-          <th scope="col"><span>Giadinh</span></th>
+          <th scope="col"><span>Tên chủ hộ</span></th>
+          <th scope="col"><span>Tháng sử dụng</span></th>
+          <th scope="col"><span>Chỉ số mới</span></th>
+          <th scope="col"><span>Chỉ số cũ</span></th>
+          <th scope="col"><span>Số nước</span></th>
+          <th scope="col"><span>Thành tiền</span></th>
+          <th scope="col"><span>Tiền thuế</span></th>
+          <th scope="col"><span>Tổng tiền</span></th>
+          <th scope="col"><span>Ngaỳ thanh toán </span></th>
+          <th scope="col"><span>Trạng thái thanh toán</span></th>
+          <th scope="col"><span>Thuế</span></th>
+          <th scope="col"><span>Bậc hộ nghèo</span></th>
+          <th scope="col"><span>Bậc hộ thường</span></th>
+          <th scope="col"><span>Gia đình</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -94,7 +94,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Chi tiết</span>
               </button>
 
               <button
@@ -104,12 +104,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Sửa</span>
               </button>
 
               <button type="submit" (click)="delete(hoaDon)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Xóa</span>
               </button>
             </div>
           </td>

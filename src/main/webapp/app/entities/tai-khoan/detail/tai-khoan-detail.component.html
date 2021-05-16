@@ -14,22 +14,22 @@
         <dd>
           <span>{{ taiKhoan.id }}</span>
         </dd>
-        <dt><span>User Name</span></dt>
+        <dt><span>Username</span></dt>
         <dd>
           <span>{{ taiKhoan.userName }}</span>
         </dd>
-        <dt><span>Pass Word</span></dt>
+        <dt><span>Password</span></dt>
         <dd>
           <span>{{ taiKhoan.passWord }}</span>
         </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
       </button>
 
       <button type="button" [routerLink]="['/tai-khoan', taiKhoan.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
       </button>
     </div>
   </div>

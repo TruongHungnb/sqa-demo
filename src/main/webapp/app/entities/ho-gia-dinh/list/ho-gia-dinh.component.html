@@ -1,11 +1,12 @@
 <div>
   <h2 id="page-heading" data-cy="HoGiaDinhHeading">
-    <span>Hộ gia đình</span>
+    <span>Hộ gia đình
+    </span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh List</span>
+        <span>Làm mới danh sách </span>
       </button>
 
       <button
@@ -15,7 +16,7 @@
         [routerLink]="['/ho-gia-dinh/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Ho Gia Dinh </span>
+        <span> Tạo mới hộ gia đình </span>
       </button>
     </div>
   </h2>
@@ -33,15 +34,15 @@
       <thead>
         <tr>
           <th scope="col"><span>ID</span></th>
-          <th scope="col"><span>Ten Chu Ho</span></th>
-          <th scope="col"><span>Ma Ho</span></th>
-          <th scope="col"><span>So Can Cuoc</span></th>
-          <th scope="col"><span>Loai Ho</span></th>
-          <th scope="col"><span>So Ho Ngheo</span></th>
+          <th scope="col"><span>Tên chủ hộ</span></th>
+          <th scope="col"><span>Mã hộ</span></th>
+          <th scope="col"><span>Số căn cước</span></th>
+          <th scope="col"><span>Loại hộ</span></th>
+          <th scope="col"><span>Sổ hộ nghèo</span></th>
           <th scope="col"><span>Email</span></th>
-          <th scope="col"><span>Sdt</span></th>
-          <th scope="col"><span>Dia Chi</span></th>
-          <th scope="col"><span>Taikhoan</span></th>
+          <th scope="col"><span>Số điện thoại</span></th>
+          <th scope="col"><span>Địa chỉ </span></th>
+          <th scope="col"><span>Tài khoản</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -72,7 +73,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Chi tiết</span>
               </button>
 
               <button
@@ -82,12 +83,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Sửa</span>
               </button>
 
               <button type="submit" (click)="delete(hoGiaDinh)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Xóa</span>
               </button>
             </div>
           </td>

@@ -15,7 +15,7 @@
         [routerLink]="['/tai-khoan/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Tai Khoan </span>
+        <span> Tạo mới tài khoản  </span>
       </button>
     </div>
   </h2>
@@ -33,8 +33,8 @@
       <thead>
         <tr>
           <th scope="col"><span>ID</span></th>
-          <th scope="col"><span>User Name</span></th>
-          <th scope="col"><span>Pass Word</span></th>
+          <th scope="col"><span>Username</span></th>
+          <th scope="col" ><span>Password</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -54,7 +54,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Chi tiết</span>
               </button>
 
               <button
@@ -64,12 +64,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Sửa</span>
               </button>
 
               <button type="submit" (click)="delete(taiKhoan)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Xóa</span>
               </button>
             </div>
           </td>

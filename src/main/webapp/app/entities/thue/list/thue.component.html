@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh List</span>
+        <span>Làm mới danh sách</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/thue/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Thue </span>
+        <span> Tạo mới một thuế </span>
       </button>
     </div>
   </h2>
@@ -33,8 +33,8 @@
       <thead>
         <tr>
           <th scope="col"><span>ID</span></th>
-          <th scope="col"><span>Ten Thue</span></th>
-          <th scope="col"><span>Gia Tri Thue</span></th>
+          <th scope="col"><span>Tên thuế</span></th>
+          <th scope="col"><span>Giá trị thuế (%)</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -49,17 +49,17 @@
             <div class="btn-group">
               <button type="submit" [routerLink]="['/thue', thue.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Chi tiết</span>
               </button>
 
               <button type="submit" [routerLink]="['/thue', thue.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Sửa</span>
               </button>
 
               <button type="submit" (click)="delete(thue)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Xóa</span>
               </button>
             </div>
           </td>

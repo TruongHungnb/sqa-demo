@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <div *ngIf="hoaDon">
-      <h2 data-cy="hoaDonDetailsHeading"><span>Hoa Don</span></h2>
+      <h2 data-cy="hoaDonDetailsHeading"><span>Hóa Đơn</span></h2>
 
       <hr />
 
@@ -14,23 +14,23 @@
         <dd>
           <span>{{ hoaDon.id }}</span>
         </dd>
-        <dt><span>Ten Chu Ho</span></dt>
+        <dt><span>Tên chủ hộ</span></dt>
         <dd>
           <span>{{ hoaDon.tenChuHo }}</span>
         </dd>
-        <dt><span>Thang Su Dung</span></dt>
+        <dt><span>Tháng sử dụng</span></dt>
         <dd>
           <span>{{ hoaDon.thangSuDung }}</span>
         </dd>
-        <dt><span>Chi So Moi</span></dt>
+        <dt><span>Chỉ số mới</span></dt>
         <dd>
           <span>{{ hoaDon.chiSoMoi }}</span>
         </dd>
-        <dt><span>Chi So Cu</span></dt>
+        <dt><span>Chỉ số cũ</span></dt>
         <dd>
           <span>{{ hoaDon.chiSoCu }}</span>
         </dd>
-        <dt><span>So Nuoc</span></dt>
+        <dt><span>Số nước</span></dt>
         <dd>
           <span>{{ hoaDon.soNuoc }}</span>
         </dd>
@@ -58,23 +58,23 @@
             <a [routerLink]="['/ho-gia-dinh', hoaDon.giadinh?.id, 'view']">{{ hoaDon.giadinh?.id }}</a>
           </div>
         </dd> -->
-        <dt><span>Thanh Tien</span></dt>
+        <dt><span>Thành tiền </span></dt>
         <dd>
           <span>{{ hoaDon.thanhTien }}</span>
         </dd>
-        <dt><span>Tien Thue</span></dt>
+        <dt><span>Tiền thuế</span></dt>
         <dd>
           <span>{{ hoaDon.tienThue }}</span>
         </dd>
-        <dt><span>Tong Tien</span></dt>
+        <dt><span>Tổng tiền</span></dt>
         <dd>
           <span>{{ hoaDon.tongTien }}</span>
         </dd>
-        <dt><span>Ngay Thanh Toan</span></dt>
+        <dt><span>Ngày thanh toán</span></dt>
         <dd>
           <span>{{ hoaDon.ngayThanhToan | formatMediumDatetime }}</span>
         </dd>
-        <dt><span>Trang Thai Thanh Toan</span></dt>
+        <dt><span>Trạng thái thanh toán</span></dt>
         <dd>
           <span>{{ hoaDon.trangThaiThanhToan }}</span>
         </dd>
@@ -82,11 +82,11 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
       </button>
 
       <button type="button" [routerLink]="['/hoa-don', hoaDon.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
       </button>
     </div>
   </div>

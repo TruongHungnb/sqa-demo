@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-thue-heading" data-cy="ThueCreateUpdateHeading">Thêm mới hoặc sửa mức thuế</h2>
+      <h2 id="jhi-thue-heading" data-cy="ThueCreateUpdateHeading">Tạo mới Thuế</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -12,12 +12,12 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_tenThue">Ten Thue</label>
+          <label class="form-control-label" for="field_tenThue">Tên thuế</label>
           <input type="text" class="form-control" name="tenThue" id="field_tenThue" data-cy="tenThue" formControlName="tenThue" />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_giaTriThue">Gia Tri Thue</label>
+          <label class="form-control-label" for="field_giaTriThue">Giá trị thuế</label>
           <input
             type="number"
             class="form-control"
@@ -31,7 +31,7 @@
 
       <div>
         <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
         </button>
 
         <button
@@ -41,7 +41,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
         </button>
       </div>
     </form>
