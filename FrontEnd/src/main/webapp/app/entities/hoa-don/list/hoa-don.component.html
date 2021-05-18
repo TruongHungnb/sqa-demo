@@ -33,6 +33,7 @@
       <thead>
         <tr>
           <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Gia đình</span></th>
           <th scope="col"><span>Tên chủ hộ</span></th>
           <th scope="col"><span>Tháng sử dụng</span></th>
           <th scope="col"><span>Chỉ số mới</span></th>
@@ -41,12 +42,13 @@
           <th scope="col"><span>Thành tiền</span></th>
           <th scope="col"><span>Tiền thuế</span></th>
           <th scope="col"><span>Tổng tiền</span></th>
-          <th scope="col"><span>Ngày thanh toán </span></th>
+          
           <th scope="col"><span>Trạng thái thanh toán</span></th>
+          <th scope="col"><span>Ngày thanh toán </span></th>
           <!-- <th scope="col"><span>Thuế</span></th> -->
           <!-- <th scope="col"><span>Bậc hộ nghèo</span></th>
           <th scope="col"><span>Bậc hộ thường</span></th> -->
-          <th scope="col"><span>Gia đình</span></th>
+         
           <th scope="col"></th>
         </tr>
       </thead>
@@ -54,6 +56,11 @@
         <tr *ngFor="let hoaDon of hoaDons; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/hoa-don', hoaDon.id, 'view']">{{ hoaDon.id }}</a>
+          </td>
+          <td>
+            <div *ngIf="hoaDon.giadinh">
+              <a [routerLink]="['/ho-gia-dinh', hoaDon.giadinh?.id, 'view']">{{ hoaDon.giadinh?.id }}</a>
+            </div>
           </td>
           <td>{{ hoaDon.tenChuHo }}</td>
           <td>{{ hoaDon.thangSuDung }}</td>
@@ -63,8 +70,9 @@
           <td>{{ hoaDon.thanhTien }}</td>
           <td>{{ hoaDon.tienThue }}</td>
           <td>{{ hoaDon.tongTien }}</td>
-          <td>{{ hoaDon.ngayThanhToan | formatMediumDatetime }}</td>
+          
           <td>{{ hoaDon.trangThaiThanhToan }}</td>
+          <td>{{ hoaDon.ngayThanhToan | formatMediumDatetime }}</td>
           <!-- <td>
             <div *ngIf="hoaDon.thue">
               <a [routerLink]="['/thue', hoaDon.thue?.id, 'view']">{{ hoaDon.thue?.id }}</a>
@@ -80,11 +88,7 @@
               <a [routerLink]="['/bac-tien-ho-thuong', hoaDon.bacHoThuong?.id, 'view']">{{ hoaDon.bacHoThuong?.id }}</a>
             </div>
           </td> -->
-          <td>
-            <div *ngIf="hoaDon.giadinh">
-              <a [routerLink]="['/ho-gia-dinh', hoaDon.giadinh?.id, 'view']">{{ hoaDon.giadinh?.id }}</a>
-            </div>
-          </td>
+          
           <td class="text-right">
             <div class="btn-group">
               <button
@@ -107,6 +111,7 @@
                 <span class="d-none d-md-inline">Cập nhật số nước</span>
               </button>
               <button
+              hidden
                 type="submit"
                 [routerLink]="['/hoa-don', hoaDon.id, 'tinh-tien']"
                 class="btn btn-secondary btn-sm"
@@ -117,8 +122,8 @@
               </button>
               <button
                 type="submit"
-                [routerLink]="['/hoa-don', hoaDon.id, 'edit']"
-                class="btn btn-info btn-sm"
+                [routerLink]="['/hoa-don', hoaDon.id, 'thanh-toan']"
+                class="btn btn-secondary btn-sm"
                 data-cy="entityEditButton"
               >
                 <!-- <fa-icon icon="pencil-alt"></fa-icon> -->

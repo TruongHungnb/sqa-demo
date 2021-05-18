@@ -6,6 +6,7 @@ import { BacTienHoNgheoComponent } from '../list/bac-tien-ho-ngheo.component';
 import { BacTienHoNgheoDetailComponent } from '../detail/bac-tien-ho-ngheo-detail.component';
 import { BacTienHoNgheoUpdateComponent } from '../update/bac-tien-ho-ngheo-update.component';
 import { BacTienHoNgheoRoutingResolveService } from './bac-tien-ho-ngheo-routing-resolve.service';
+import { AdminRoutingModule } from 'app/admin/admin-routing.module';
 
 const bacTienHoNgheoRoute: Routes = [
   {

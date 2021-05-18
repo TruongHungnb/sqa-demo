@@ -7,7 +7,7 @@ import { HoaDonDetailComponent } from '../detail/hoa-don-detail.component';
 import { HoaDonUpdateComponent } from '../update/hoa-don-update.component';
 import { HoaDonRoutingResolveService } from './hoa-don-routing-resolve.service';
 import { CapNhatNuocComponent } from '../cap-nhat-nuoc/cap-nhat-nuoc.component';
-import { TinhTienComponent } from '../tinh-tien/tinh-tien.component';
+import { ThanhToanComponent } from '../thanh-toan/thanh-toan.component';
 //import  {HoaDonUpdateComponent} from '../cap-nhat-nuoc/cap-nhat-nuoc.component';
 const hoaDonRoute: Routes = [
   {
@@ -40,8 +40,8 @@ const hoaDonRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
-    path: ':id/tinh-tien',
-    component: TinhTienComponent,
+    path: ':id/thanh-toan',
+    component:ThanhToanComponent,
     resolve: {
       hoaDon: HoaDonRoutingResolveService,
     },

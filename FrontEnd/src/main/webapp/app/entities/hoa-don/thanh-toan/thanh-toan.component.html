@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
       <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-        <h2 id="jhi-hoa-don-heading" data-cy="HoaDonCreateUpdateHeading">Cập nhật số nước</h2>
+        <h2 id="jhi-hoa-don-heading" data-cy="HoaDonCreateUpdateHeading">Thêm mới hoặc sửa hóa đơn</h2>
   
         <div>
           <jhi-alert-error></jhi-alert-error>
@@ -41,39 +41,50 @@
               formControlName="thangSuDung"
             />
           </div>
-          <div class="form-group">
+          <div class="form-group" >
             <label class="form-control-label" for="field_chiSoCu">Chỉ số cũ</label>
             <input type="number" class="form-control" name="chiSoCu" id="field_chiSoCu" data-cy="chiSoCu" formControlName="chiSoCu" />
           </div>
-          <div class="form-group">
+  
+          <div class="form-group" >
             <label class="form-control-label" for="field_chiSoMoi">Chỉ số mới</label>
             <input type="number" class="form-control" name="chiSoMoi" id="field_chiSoMoi" data-cy="chiSoMoi" formControlName="chiSoMoi" />
           </div>
   
-        
-  
-          <div class="form-group" hidden>
+         
+          <div class="form-group" >
             <label class="form-control-label" for="field_soNuoc">Số nước</label>
             <input type="number" class="form-control" name="soNuoc" id="field_soNuoc" data-cy="soNuoc" formControlName="soNuoc" />
           </div>
   
-          <div class="form-group" hidden>
+          <div class="form-group" >
             <label class="form-control-label" for="field_thanhTien">Thành tiền</label>
             <input type="number" class="form-control" name="thanhTien" id="field_thanhTien" data-cy="thanhTien" formControlName="thanhTien" />
           </div>
   
-          <div class="form-group" hidden>
+          <div class="form-group" >
             <label class="form-control-label" for="field_tienThue">Tiền thuế</label>
             <input type="number" class="form-control" name="tienThue" id="field_tienThue" data-cy="tienThue" formControlName="tienThue" />
           </div>
   
-          <div class="form-group" hidden>
+          <div class="form-group" >
             <label class="form-control-label" for="field_tongTien">Tổng tiền</label>
             <input type="number" class="form-control" name="tongTien" id="field_tongTien" data-cy="tongTien" formControlName="tongTien" />
           </div>
+          <div class="form-group" >
+            <label class="form-control-label" for="field_trangThaiThanhToan">Trạng thái thanh toán</label>
+            <input
+              type="text"
+              class="form-control"
+              name="trangThaiThanhToan"
+              id="field_trangThaiThanhToan"
+              data-cy="trangThaiThanhToan"
+              formControlName="trangThaiThanhToan"
+            />
+          </div>
   
-          <div class="form-group" hidden>
-            <label class="form-control-label" for="field_ngayThanhToan">Ngày thanh toán</label>
+          <div class="form-group" >
+            <label class="form-control-label" for="field_ngayThanhToan">Ngày tạo hóa đơn</label>
             <div class="d-flex">
               <input
                 id="field_ngayThanhToan"
@@ -87,17 +98,7 @@
             </div>
           </div>
   
-          <div class="form-group" hidden>
-            <label class="form-control-label" for="field_trangThaiThanhToan">Trạng thái thanh toán</label>
-            <input
-              type="text"
-              class="form-control"
-              name="trangThaiThanhToan"
-              id="field_trangThaiThanhToan"
-              data-cy="trangThaiThanhToan"
-              formControlName="trangThaiThanhToan"
-            />
-          </div>
+         
   
           <div class="form-group" hidden>
             <label class="form-control-label" for="field_thue">Thuế</label>
@@ -143,7 +144,7 @@
               </option>
             </select>
           </div>
-   
+  
         </div>
   
         <div>
@@ -158,7 +159,7 @@
             [disabled]="editForm.invalid || isSaving"
             class="btn btn-primary"
           >
-            <fa-icon icon="save"></fa-icon>&nbsp;<span>Cập nhật</span>
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Thanh toán</span>
           </button>
         </div>
       </form>

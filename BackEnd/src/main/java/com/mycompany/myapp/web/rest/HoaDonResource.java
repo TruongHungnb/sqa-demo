@@ -28,7 +28,14 @@ public class HoaDonResource {
     private final Logger log = LoggerFactory.getLogger(HoaDonResource.class);
 
     private static final String ENTITY_NAME = "hoaDon";
-
+    private static final Long bac1 = 3600L;
+    private static final Long bac2= 4500L;
+    private static final Long bac3 = 5600L;
+    private static final Long bac4 = 6700L;
+    private static final Long thue1 = 36L;
+    private static final Long thue2= 45L;
+    private static final Long thue3 = 56L;
+    private static final Long thue4= 67L;
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
@@ -82,13 +89,40 @@ public class HoaDonResource {
         if (!hoaDonRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
-      
         hoaDon.setSoNuoc(hoaDon.getChiSoMoi()- hoaDon.getChiSoCu());
-        hoaDon.setThanhTien(hoaDon.getSoNuoc()*3600);
-        hoaDon.setTienThue(hoaDon.getSoNuoc()*36*15);
-        hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
+        if(hoaDon.getChiSoCu()!=null&& hoaDon.getChiSoMoi() != null) {
+        	 hoaDon.setSoNuoc(hoaDon.getChiSoMoi()- hoaDon.getChiSoCu());
+             long soNuoc = hoaDon.getSoNuoc();
+             if(  soNuoc <= 10) {
+             	hoaDon.setThanhTien(soNuoc*bac1);
+                 hoaDon.setTienThue(hoaDon.getSoNuoc()*thue1*15);
+                 hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
+             }
+           else if(  soNuoc <= 20) {
+         	long tien = 10*bac1 + (soNuoc-10)*bac2;
+         	long thue = (10*thue1+(soNuoc - 10)*thue2)*15;
+         	hoaDon.setThanhTien(tien);
+             hoaDon.setTienThue(thue);
+             hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
+         }
+         else if(  soNuoc <= 30) {
+         	long tien = 10*bac1 + 10*bac2+(soNuoc-10)*bac3;
+         	long thue = (10*thue1+10*thue2+(soNuoc - 10)*thue3)*15;
+         	hoaDon.setThanhTien(tien);
+             hoaDon.setTienThue(thue);
+             hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
+         }
         
-        System.out.println(hoaDon.getThanhTien());
+         else {
+         	long tien = 10*bac1 + 10*bac2 + 10*bac3 +(soNuoc-30)*bac4;
+         	long thue = (10*thue1 + 10*thue2 + 10*thue3 +(soNuoc-30)*thue4)*15;
+         	hoaDon.setThanhTien(tien);
+             hoaDon.setTienThue(thue);
+             hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
+         	
+         }
+        }
+       
 
         HoaDon result = hoaDonRepository.save(hoaDon);
         return ResponseEntity
