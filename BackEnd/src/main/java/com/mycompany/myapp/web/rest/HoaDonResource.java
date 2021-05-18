@@ -82,8 +82,13 @@ public class HoaDonResource {
         if (!hoaDonRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
-       
-        hoaDon.setSoNuoc(hoaDon.getChiSoMoi()-hoaDon.getChiSoCu());
+      
+        hoaDon.setSoNuoc(hoaDon.getChiSoMoi()- hoaDon.getChiSoCu());
+        hoaDon.setThanhTien(hoaDon.getSoNuoc()*3600);
+        hoaDon.setTienThue(hoaDon.getSoNuoc()*36*15);
+        hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
+        
+        System.out.println(hoaDon.getThanhTien());
 
         HoaDon result = hoaDonRepository.save(hoaDon);
         return ResponseEntity

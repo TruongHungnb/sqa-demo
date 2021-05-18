@@ -7,10 +7,11 @@ import { HoaDonUpdateComponent } from './update/hoa-don-update.component';
 import { HoaDonDeleteDialogComponent } from './delete/hoa-don-delete-dialog.component';
 import { HoaDonRoutingModule } from './route/hoa-don-routing.module';
 import {CapNhatNuocComponent} from './cap-nhat-nuoc/cap-nhat-nuoc.component';
+import { TinhTienComponent } from './tinh-tien/tinh-tien.component';
 
 @NgModule({
   imports: [SharedModule,  HoaDonRoutingModule],
-  declarations: [HoaDonComponent, HoaDonDetailComponent, HoaDonUpdateComponent, HoaDonDeleteDialogComponent, CapNhatNuocComponent],
+  declarations: [HoaDonComponent, HoaDonDetailComponent, HoaDonUpdateComponent, HoaDonDeleteDialogComponent, CapNhatNuocComponent, TinhTienComponent],
   entryComponents: [HoaDonDeleteDialogComponent,HoaDonComponent],
 })
 export class HoaDonModule {}

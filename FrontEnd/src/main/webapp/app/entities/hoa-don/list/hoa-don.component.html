@@ -99,12 +99,30 @@
 
               <button
                 type="submit"
-                [routerLink]="['/hoa-don', hoaDon.id, 'edit']"
+                [routerLink]="['/hoa-don', hoaDon.id, 'update-nuoc']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Sửa</span>
+                <span class="d-none d-md-inline">Cập nhật số nước</span>
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/hoa-don', hoaDon.id, 'tinh-tien']"
+                class="btn btn-secondary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Tính tiền nước</span>
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/hoa-don', hoaDon.id, 'edit']"
+                class="btn btn-info btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Thanh toán</span>
               </button>
 
               <button type="submit" (click)="delete(hoaDon)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
