@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="myUserLabel">Create or edit a User</h2>
+      <h2 id="myUserLabel">Tạo mới hoặc thay</h2>
 
       <div *ngIf="user">
         <jhi-alert-error></jhi-alert-error>
@@ -12,40 +12,40 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label">Login</label>
+          <label class="form-control-label">Tên đăng nhập</label>
           <input type="text" class="form-control" name="login" formControlName="login" />
 
           <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required"> Bắt buộc nhập tên đăng nhập </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.maxlength">
-              This field cannot be longer than 50 characters.
+              Tên đăng nhập không dài quá 50 kí tự
             </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.pattern">
-              This field can only contain letters, digits and e-mail addresses.
+              Tên đăng nhập chỉ chứ chữ cái, chữ số hoặc địa chỉ email.
             </small>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-control-label">First Name</label>
+          <label class="form-control-label">Họ và tên đệm</label>
           <input type="text" class="form-control" name="firstName" formControlName="firstName" />
 
           <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('firstName')?.errors?.maxlength">
-              This field cannot be longer than 50 characters.
+              Họ và tên đệm không dài quá 50 kí tự 
             </small>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Last Name</label>
+          <label>Tên</label>
           <input type="text" class="form-control" name="lastName" formControlName="lastName" />
 
           <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('lastName')?.errors?.maxlength">
-              This field cannot be longer than 50 characters.
+              Tên không dài quá 50 kí tự 
             </small>
           </div>
         </div>
@@ -55,17 +55,17 @@
           <input type="email" class="form-control" name="email" formControlName="email" />
 
           <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> Bắt buộc nhập địa chỉ email. </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.maxlength">
-              This field cannot be longer than 100 characters.
+             Địa chỉ email không dài quá 100 kí tự 
             </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.minlength">
-              This field is required to be at least 5 characters.
+              Địa chỉ email chứa ít nhất 5 kí tự
             </small>
 
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email"> Your email is invalid. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email"> Địa chỉ email không hợp lệ. </small>
           </div>
         </div>
 
@@ -79,12 +79,12 @@
               name="activated"
               formControlName="activated"
             />
-            <span>Activated</span>
+            <span>Được kích hoạt</span>
           </label>
         </div>
 
         <div class="form-group">
-          <label>Profiles</label>
+          <label>Quyền</label>
           <select class="form-control" multiple name="authority" formControlName="authorities">
             <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
           </select>
@@ -93,11 +93,11 @@
 
       <div *ngIf="user">
         <button type="button" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy bỏ</span>
         </button>
 
         <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
         </button>
       </div>
     </form>

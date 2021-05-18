@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <div *ngIf="thue">
-      <h2 data-cy="thueDetailsHeading"><span>Thue</span></h2>
+      <h2 data-cy="thueDetailsHeading"><span>Thuế</span></h2>
 
       <hr />
 
@@ -25,11 +25,11 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
       </button>
 
       <button type="button" [routerLink]="['/thue', thue.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
       </button>
     </div>
   </div>
