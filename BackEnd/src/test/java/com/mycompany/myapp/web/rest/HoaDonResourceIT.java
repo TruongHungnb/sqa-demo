@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -126,6 +127,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createHoaDon() throws Exception {
         int databaseSizeBeforeCreate = hoaDonRepository.findAll().size();
@@ -151,6 +153,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createHoaDonWithExistingId() throws Exception {
         // Create the HoaDon with an existing ID
@@ -224,6 +227,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNewHoaDon() throws Exception {
         // Initialize the database
@@ -272,6 +276,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNonExistingHoaDon() throws Exception {
         int databaseSizeBeforeUpdate = hoaDonRepository.findAll().size();
@@ -292,6 +297,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithIdMismatchHoaDon() throws Exception {
         int databaseSizeBeforeUpdate = hoaDonRepository.findAll().size();
@@ -312,6 +318,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithMissingIdPathParamHoaDon() throws Exception {
         int databaseSizeBeforeUpdate = hoaDonRepository.findAll().size();
@@ -328,6 +335,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void partialUpdateHoaDonWithPatch() throws Exception {
         // Initialize the database
@@ -370,6 +378,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void fullUpdateHoaDonWithPatch() throws Exception {
         // Initialize the database
@@ -418,6 +427,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchNonExistingHoaDon() throws Exception {
         int databaseSizeBeforeUpdate = hoaDonRepository.findAll().size();
@@ -438,6 +448,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithIdMismatchHoaDon() throws Exception {
         int databaseSizeBeforeUpdate = hoaDonRepository.findAll().size();
@@ -458,6 +469,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithMissingIdPathParamHoaDon() throws Exception {
         int databaseSizeBeforeUpdate = hoaDonRepository.findAll().size();
@@ -474,6 +486,7 @@ class HoaDonResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void deleteHoaDon() throws Exception {
         // Initialize the database
@@ -489,5 +502,29 @@ class HoaDonResourceIT {
         // Validate the database contains one less item
         List<HoaDon> hoaDonList = hoaDonRepository.findAll();
         assertThat(hoaDonList).hasSize(databaseSizeBeforeDelete - 1);
+    }
+
+    @Test
+    void testCreateHoaDon() {
+    }
+
+    @Test
+    void updateHoaDon() {
+    }
+
+    @Test
+    void partialUpdateHoaDon() {
+    }
+
+    @Test
+    void testGetAllHoaDons() {
+    }
+
+    @Test
+    void testGetHoaDon() {
+    }
+
+    @Test
+    void testDeleteHoaDon() {
     }
 }

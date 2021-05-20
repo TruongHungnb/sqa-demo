@@ -91,7 +91,7 @@ class BacTienHoNgheoResourceIT {
                 post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bacTienHoNgheo))
             )
             .andExpect(status().isCreated());
-           
+
 
         // Validate the BacTienHoNgheo in the database
         List<BacTienHoNgheo> bacTienHoNgheoList = bacTienHoNgheoRepository.findAll();
@@ -102,6 +102,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createBacTienHoNgheoWithExistingId() throws Exception {
         // Create the BacTienHoNgheo with an existing ID
@@ -122,6 +123,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+
     @Transactional
     void getAllBacTienHoNgheos() throws Exception {
         // Initialize the database
@@ -161,6 +163,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNewBacTienHoNgheo() throws Exception {
         // Initialize the database
@@ -191,6 +194,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNonExistingBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();
@@ -211,6 +215,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithIdMismatchBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();
@@ -231,6 +236,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithMissingIdPathParamBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();
@@ -247,6 +253,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void partialUpdateBacTienHoNgheoWithPatch() throws Exception {
         // Initialize the database
@@ -277,6 +284,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void fullUpdateBacTienHoNgheoWithPatch() throws Exception {
         // Initialize the database
@@ -307,6 +315,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchNonExistingBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();
@@ -327,6 +336,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithIdMismatchBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();
@@ -347,6 +357,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithMissingIdPathParamBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();
@@ -365,6 +376,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void deleteBacTienHoNgheo() throws Exception {
         // Initialize the database

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,6 +81,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createBacTienHoThuong() throws Exception {
         int databaseSizeBeforeCreate = bacTienHoThuongRepository.findAll().size();
@@ -99,6 +101,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createBacTienHoThuongWithExistingId() throws Exception {
         // Create the BacTienHoThuong with an existing ID
@@ -119,6 +122,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getAllBacTienHoThuongs() throws Exception {
         // Initialize the database
@@ -135,6 +139,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getBacTienHoThuong() throws Exception {
         // Initialize the database
@@ -158,6 +163,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNewBacTienHoThuong() throws Exception {
         // Initialize the database
@@ -188,6 +194,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNonExistingBacTienHoThuong() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoThuongRepository.findAll().size();
@@ -208,6 +215,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithIdMismatchBacTienHoThuong() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoThuongRepository.findAll().size();
@@ -228,6 +236,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithMissingIdPathParamBacTienHoThuong() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoThuongRepository.findAll().size();
@@ -246,6 +255,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void partialUpdateBacTienHoThuongWithPatch() throws Exception {
         // Initialize the database
@@ -274,6 +284,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void fullUpdateBacTienHoThuongWithPatch() throws Exception {
         // Initialize the database
@@ -304,6 +315,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchNonExistingBacTienHoThuong() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoThuongRepository.findAll().size();
@@ -324,6 +336,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithIdMismatchBacTienHoThuong() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoThuongRepository.findAll().size();
@@ -344,6 +357,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithMissingIdPathParamBacTienHoThuong() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoThuongRepository.findAll().size();
@@ -364,6 +378,7 @@ class BacTienHoThuongResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void deleteBacTienHoThuong() throws Exception {
         // Initialize the database

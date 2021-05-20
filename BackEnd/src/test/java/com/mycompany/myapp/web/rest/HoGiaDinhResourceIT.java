@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -114,6 +115,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createHoGiaDinh() throws Exception {
         int databaseSizeBeforeCreate = hoGiaDinhRepository.findAll().size();
@@ -137,6 +139,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createHoGiaDinhWithExistingId() throws Exception {
         // Create the HoGiaDinh with an existing ID
@@ -155,6 +158,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getAllHoGiaDinhs() throws Exception {
         // Initialize the database
@@ -177,6 +181,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getHoGiaDinh() throws Exception {
         // Initialize the database
@@ -199,6 +204,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getNonExistingHoGiaDinh() throws Exception {
         // Get the hoGiaDinh
@@ -206,6 +212,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNewHoGiaDinh() throws Exception {
         // Initialize the database
@@ -250,6 +257,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNonExistingHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -270,6 +278,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithIdMismatchHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -290,6 +299,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithMissingIdPathParamHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -306,6 +316,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void partialUpdateHoGiaDinhWithPatch() throws Exception {
         // Initialize the database
@@ -342,6 +353,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void fullUpdateHoGiaDinhWithPatch() throws Exception {
         // Initialize the database
@@ -386,6 +398,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchNonExistingHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -406,6 +419,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithIdMismatchHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -426,6 +440,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithMissingIdPathParamHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -444,6 +459,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void deleteHoGiaDinh() throws Exception {
         // Initialize the database

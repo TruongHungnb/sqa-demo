@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,6 +81,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createTaiKhoan() throws Exception {
         int databaseSizeBeforeCreate = taiKhoanRepository.findAll().size();
@@ -97,6 +99,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createTaiKhoanWithExistingId() throws Exception {
         // Create the TaiKhoan with an existing ID
@@ -154,6 +157,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNewTaiKhoan() throws Exception {
         // Initialize the database
@@ -184,6 +188,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNonExistingTaiKhoan() throws Exception {
         int databaseSizeBeforeUpdate = taiKhoanRepository.findAll().size();
@@ -204,6 +209,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithIdMismatchTaiKhoan() throws Exception {
         int databaseSizeBeforeUpdate = taiKhoanRepository.findAll().size();
@@ -224,6 +230,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithMissingIdPathParamTaiKhoan() throws Exception {
         int databaseSizeBeforeUpdate = taiKhoanRepository.findAll().size();
@@ -240,6 +247,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void partialUpdateTaiKhoanWithPatch() throws Exception {
         // Initialize the database
@@ -270,6 +278,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void fullUpdateTaiKhoanWithPatch() throws Exception {
         // Initialize the database
@@ -300,6 +309,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchNonExistingTaiKhoan() throws Exception {
         int databaseSizeBeforeUpdate = taiKhoanRepository.findAll().size();
@@ -320,6 +330,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithIdMismatchTaiKhoan() throws Exception {
         int databaseSizeBeforeUpdate = taiKhoanRepository.findAll().size();
@@ -340,6 +351,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithMissingIdPathParamTaiKhoan() throws Exception {
         int databaseSizeBeforeUpdate = taiKhoanRepository.findAll().size();
@@ -356,6 +368,7 @@ class TaiKhoanResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void deleteTaiKhoan() throws Exception {
         // Initialize the database

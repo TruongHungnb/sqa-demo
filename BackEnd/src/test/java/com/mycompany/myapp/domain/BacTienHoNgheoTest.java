@@ -20,7 +20,7 @@ class BacTienHoNgheoTest {
     private BacTienHoNgheo underTest;
 
     @Test
-    @Rollback
+
 
     void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(BacTienHoNgheo.class);
@@ -37,62 +37,62 @@ class BacTienHoNgheoTest {
     }
 
     @Test
-    @Rollback
+
     void getId() {
     }
 
     @Test
-    @Rollback
+
     void setId() {
     }
 
     @Test
-    @Rollback
+
     void id() {
     }
 
     @Test
-    @Rollback
+
     void getTenBac() {
     }
 
     @Test
-    @Rollback
+
     void tenBac() {
     }
 
     @Test
-    @Rollback
+
     void setTenBac() {
     }
 
     @Test
-    @Rollback
+
     void getGiaTriBac() {
     }
 
     @Test
-    @Rollback
+
     void giaTriBac() {
     }
 
     @Test
-    @Rollback
+
     void setGiaTriBac() {
     }
 
     @Test
-    @Rollback
+
     void testEquals() {
     }
 
     @Test
-    @Rollback
+
     void testHashCode() {
     }
 
     @Test
-    @Rollback
+
     void testToString() {
     }
 

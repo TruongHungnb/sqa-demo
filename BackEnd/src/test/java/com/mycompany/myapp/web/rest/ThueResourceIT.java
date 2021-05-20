@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,6 +81,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createThue() throws Exception {
         int databaseSizeBeforeCreate = thueRepository.findAll().size();
@@ -97,6 +99,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void createThueWithExistingId() throws Exception {
         // Create the Thue with an existing ID
@@ -115,6 +118,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getAllThues() throws Exception {
         // Initialize the database
@@ -131,6 +135,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getThue() throws Exception {
         // Initialize the database
@@ -147,6 +152,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void getNonExistingThue() throws Exception {
         // Get the thue
@@ -154,6 +160,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNewThue() throws Exception {
         // Initialize the database
@@ -184,6 +191,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putNonExistingThue() throws Exception {
         int databaseSizeBeforeUpdate = thueRepository.findAll().size();
@@ -204,6 +212,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithIdMismatchThue() throws Exception {
         int databaseSizeBeforeUpdate = thueRepository.findAll().size();
@@ -224,6 +233,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void putWithMissingIdPathParamThue() throws Exception {
         int databaseSizeBeforeUpdate = thueRepository.findAll().size();
@@ -240,6 +250,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void partialUpdateThueWithPatch() throws Exception {
         // Initialize the database
@@ -270,6 +281,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void fullUpdateThueWithPatch() throws Exception {
         // Initialize the database
@@ -300,6 +312,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchNonExistingThue() throws Exception {
         int databaseSizeBeforeUpdate = thueRepository.findAll().size();
@@ -340,6 +353,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void patchWithMissingIdPathParamThue() throws Exception {
         int databaseSizeBeforeUpdate = thueRepository.findAll().size();
@@ -356,6 +370,7 @@ class ThueResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void deleteThue() throws Exception {
         // Initialize the database
