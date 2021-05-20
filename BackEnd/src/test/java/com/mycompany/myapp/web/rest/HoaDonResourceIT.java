@@ -197,7 +197,7 @@ class HoaDonResourceIT {
     void getHoaDon() throws Exception {
         // Initialize the database
         hoaDonRepository.saveAndFlush(hoaDon);
-
+       // final String expected = "OK";
         // Get the hoaDon
         restHoaDonMockMvc
             .perform(get(ENTITY_API_URL_ID, hoaDon.getId()))

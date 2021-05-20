@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,6 +82,7 @@ class BacTienHoNgheoResourceIT {
 
     @Test
     @Transactional
+    @Rollback
     void createBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeCreate = bacTienHoNgheoRepository.findAll().size();
         // Create the BacTienHoNgheo
@@ -89,6 +91,7 @@ class BacTienHoNgheoResourceIT {
                 post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bacTienHoNgheo))
             )
             .andExpect(status().isCreated());
+           
 
         // Validate the BacTienHoNgheo in the database
         List<BacTienHoNgheo> bacTienHoNgheoList = bacTienHoNgheoRepository.findAll();

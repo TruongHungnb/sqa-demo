@@ -249,5 +249,6 @@ public class HoaDonResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+        	
     }
 }

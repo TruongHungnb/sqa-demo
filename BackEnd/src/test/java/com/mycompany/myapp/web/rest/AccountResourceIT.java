@@ -26,6 +26,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 @AutoConfigureMockMvc
 @WithMockUser(value = TEST_USER_LOGIN)
 @IntegrationTest
+
 class AccountResourceIT {
 
     static final String TEST_USER_LOGIN = "test";
@@ -56,11 +58,13 @@ class AccountResourceIT {
 
     @Test
     @WithUnauthenticatedMockUser
+
     void testNonAuthenticatedUser() throws Exception {
         restAccountMockMvc
             .perform(get("/api/authenticate").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().string(""));
+
     }
 
     @Test
@@ -113,6 +117,7 @@ class AccountResourceIT {
         restAccountMockMvc
             .perform(get("/api/account").accept(MediaType.APPLICATION_PROBLEM_JSON))
             .andExpect(status().isInternalServerError());
+
     }
 
     @Test
@@ -151,11 +156,13 @@ class AccountResourceIT {
         invalidUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
         restAccountMockMvc
-            .perform(post("/api/register").contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(invalidUser)))
+            .perform(post("/api/register").contentType(MediaType.APPLICATION_JSON)
+            		.content(TestUtil.convertObjectToJsonBytes(invalidUser)))
             .andExpect(status().isBadRequest());
 
         Optional<User> user = userRepository.findOneByEmailIgnoreCase("funky@example.com");
         assertThat(user).isEmpty();
+
     }
 
     @Test
@@ -200,9 +207,12 @@ class AccountResourceIT {
 
         Optional<User> user = userRepository.findOneByLogin("bob");
         assertThat(user).isEmpty();
+
+
     }
 
     @Test
+    @Rollback
     @Transactional
     void testRegisterNullPassword() throws Exception {
         ManagedUserVM invalidUser = new ManagedUserVM();
@@ -225,6 +235,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testRegisterDuplicateLogin() throws Exception {
         // First registration
@@ -275,6 +286,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testRegisterDuplicateEmail() throws Exception {
         // First user
@@ -353,6 +365,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testRegisterAdminIsIgnored() throws Exception {
         ManagedUserVM validUser = new ManagedUserVM();
@@ -370,14 +383,17 @@ class AccountResourceIT {
             .perform(post("/api/register").contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(validUser)))
             .andExpect(status().isCreated());
 
+
         Optional<User> userDup = userRepository.findOneWithAuthoritiesByLogin("badguy");
         assertThat(userDup).isPresent();
         assertThat(userDup.get().getAuthorities())
             .hasSize(1)
             .containsExactly(authorityRepository.findById(AuthoritiesConstants.USER).get());
+
     }
 
     @Test
+    @Rollback
     @Transactional
     void testActivateAccount() throws Exception {
         final String activationKey = "some activation key";
@@ -397,12 +413,14 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testActivateAccountWithWrongKey() throws Exception {
         restAccountMockMvc.perform(get("/api/activate?key=wrongActivationKey")).andExpect(status().isInternalServerError());
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("save-account")
     void testSaveAccount() throws Exception {
@@ -439,6 +457,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("save-invalid-email")
     void testSaveInvalidEmail() throws Exception {
@@ -468,6 +487,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("save-existing-email")
     void testSaveExistingEmail() throws Exception {
@@ -505,6 +525,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("save-existing-email-and-login")
     void testSaveExistingEmailAndLogin() throws Exception {
@@ -534,6 +555,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("change-password-wrong-existing-password")
     void testChangePasswordWrongExistingPassword() throws Exception {
@@ -558,6 +580,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("change-password")
     void testChangePassword() throws Exception {
@@ -581,6 +604,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("change-password-too-small")
     void testChangePasswordTooSmall() throws Exception {
@@ -606,6 +630,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("change-password-too-long")
     void testChangePasswordTooLong() throws Exception {
@@ -631,6 +656,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     @WithMockUser("change-password-empty")
     void testChangePasswordEmpty() throws Exception {
@@ -654,6 +680,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testRequestPasswordReset() throws Exception {
         User user = new User();
@@ -669,6 +696,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testRequestPasswordResetUpperCaseEmail() throws Exception {
         User user = new User();
@@ -684,6 +712,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     void testRequestPasswordResetWrongEmail() throws Exception {
         restAccountMockMvc
             .perform(post("/api/account/reset-password/init").content("password-reset-wrong-email@example.com"))
@@ -691,6 +720,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testFinishPasswordReset() throws Exception {
         User user = new User();
@@ -718,6 +748,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testFinishPasswordResetTooSmall() throws Exception {
         User user = new User();
@@ -745,6 +776,7 @@ class AccountResourceIT {
     }
 
     @Test
+    @Rollback
     @Transactional
     void testFinishPasswordResetWrongKey() throws Exception {
         KeyAndPasswordVM keyAndPassword = new KeyAndPasswordVM();
