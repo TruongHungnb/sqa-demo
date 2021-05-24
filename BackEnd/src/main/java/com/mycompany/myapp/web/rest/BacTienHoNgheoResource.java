@@ -48,10 +48,14 @@ public class BacTienHoNgheoResource {
     @PostMapping("/bac-tien-ho-ngheos")
     public ResponseEntity<BacTienHoNgheo> createBacTienHoNgheo(@RequestBody BacTienHoNgheo bacTienHoNgheo) throws URISyntaxException {
         log.debug("REST request to save BacTienHoNgheo : {}", bacTienHoNgheo);
+
         if (bacTienHoNgheo.getId() != null) {
             throw new BadRequestAlertException("A new bacTienHoNgheo cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
         BacTienHoNgheo result = bacTienHoNgheoRepository.save(bacTienHoNgheo);
+
+
         return ResponseEntity
             .created(new URI("/api/bac-tien-ho-ngheos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))

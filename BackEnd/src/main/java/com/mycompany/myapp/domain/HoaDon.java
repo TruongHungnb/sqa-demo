@@ -16,6 +16,7 @@ public class HoaDon implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id" , unique = true, nullable = false)
     private Long id;
 
     @Column(name = "ten_chu_ho")
@@ -132,7 +133,7 @@ public class HoaDon implements Serializable {
     }
 
     public Long getSoNuoc() {
-    	
+
         return this.soNuoc;
     }
 

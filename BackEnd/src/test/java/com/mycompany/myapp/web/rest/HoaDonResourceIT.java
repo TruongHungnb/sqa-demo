@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,13 +130,14 @@ class HoaDonResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void createHoaDon() throws Exception {
         int databaseSizeBeforeCreate = hoaDonRepository.findAll().size();
         // Create the HoaDon
         restHoaDonMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(hoaDon)))
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtil.convertObjectToJsonBytes(hoaDon)))
             .andExpect(status().isCreated());
 
         // Validate the HoaDon in the database
@@ -153,7 +157,7 @@ class HoaDonResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void createHoaDonWithExistingId() throws Exception {
         // Create the HoaDon with an existing ID
@@ -177,6 +181,7 @@ class HoaDonResourceIT {
         // Initialize the database
         hoaDonRepository.saveAndFlush(hoaDon);
 
+
         // Get all the hoaDonList
         restHoaDonMockMvc
             .perform(get(ENTITY_API_URL + "?sort=id,desc"))
@@ -194,6 +199,7 @@ class HoaDonResourceIT {
             .andExpect(jsonPath("$.[*].ngayThanhToan").value(hasItem(DEFAULT_NGAY_THANH_TOAN.toString())))
             .andExpect(jsonPath("$.[*].trangThaiThanhToan").value(hasItem(DEFAULT_TRANG_THAI_THANH_TOAN)));
     }
+
 
     @Test
     @Transactional
@@ -223,7 +229,9 @@ class HoaDonResourceIT {
     @Transactional
     void getNonExistingHoaDon() throws Exception {
         // Get the hoaDon
-        restHoaDonMockMvc.perform(get(ENTITY_API_URL_ID, Long.MAX_VALUE)).andExpect(status().isNotFound());
+        restHoaDonMockMvc
+            .perform(get(ENTITY_API_URL_ID, Long.MAX_VALUE))
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -504,27 +512,5 @@ class HoaDonResourceIT {
         assertThat(hoaDonList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
-    @Test
-    void testCreateHoaDon() {
-    }
 
-    @Test
-    void updateHoaDon() {
-    }
-
-    @Test
-    void partialUpdateHoaDon() {
-    }
-
-    @Test
-    void testGetAllHoaDons() {
-    }
-
-    @Test
-    void testGetHoaDon() {
-    }
-
-    @Test
-    void testDeleteHoaDon() {
-    }
 }

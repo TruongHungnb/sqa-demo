@@ -1,19 +1,19 @@
 <div>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h1 data-cy="registerTitle">Registration</h1>
+      <h1 data-cy="registerTitle">Đăng kí tài khoản</h1>
 
-      <div class="alert alert-success" *ngIf="success"><strong>Registration saved!</strong> Please check your email for confirmation.</div>
+      <div class="alert alert-success" *ngIf="success"><strong>Đăng kí thành công</strong> Please check your email for confirmation.</div>
 
-      <div class="alert alert-danger" *ngIf="error"><strong>Registration failed!</strong> Please try again later.</div>
+      <div class="alert alert-danger" *ngIf="error"><strong>Đăng kí thất bại</strong> Please try again later.</div>
 
       <div class="alert alert-danger" *ngIf="errorUserExists">
-        <strong>Login name already registered!</strong> Please choose another one.
+        <strong>Tên đăng nhập đã được sử dụng</strong> Vui lòng chọn một tên khác.
       </div>
 
-      <div class="alert alert-danger" *ngIf="errorEmailExists"><strong>Email is already in use!</strong> Please choose another one.</div>
+      <div class="alert alert-danger" *ngIf="errorEmailExists"><strong>Email đã được sử dụng</strong> Vui lòng sử dụng email khác</div>
 
-      <div class="alert alert-danger" *ngIf="doNotMatch">The password and its confirmation do not match!</div>
+      <div class="alert alert-danger" *ngIf="doNotMatch">Mật khẩu không khớp nhau.</div>
     </div>
   </div>
 
@@ -21,7 +21,7 @@
     <div class="col-md-8">
       <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
         <div class="form-group">
-          <label class="form-control-label" for="login">Username</label>
+          <label class="form-control-label" for="login">Tên đăng nhập</label>
           <input
             type="text"
             class="form-control"
@@ -34,18 +34,18 @@
           />
 
           <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
-            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required"> Your username is required. </small>
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required">Tên đăng nhập bắt buộc </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
-              Your username is required to be at least 1 character.
+              Tên đăng nhập ít nhất 1 kí tự
             </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.maxlength">
-              Your username cannot be longer than 50 characters.
+             Tên đăng nhập không dài quá 50 kí tự 
             </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.pattern">
-              Your username can only contain letters and digits.
+             tên đăng nhập chỉ chứ kí tự chữ và số
             </small>
           </div>
         </div>
@@ -63,22 +63,22 @@
           />
 
           <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Your email is required. </small>
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Email bắt buộc </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Your email is invalid. </small>
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Email sai </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.minlength">
-              Your email is required to be at least 5 characters.
+             Email bắt buộc ít nhất 5 kí tự 
             </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.maxlength">
-              Your email cannot be longer than 100 characters.
+             Email không dài quá 100 kí tự 
             </small>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="password">New password</label>
+          <label class="form-control-label" for="password">Mật khẩu mới </label>
           <input
             type="password"
             class="form-control"
@@ -92,14 +92,14 @@
           <div
             *ngIf="registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required"> Your password is required. </small>
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required"> Mật khẩu bắt buộc </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.minlength">
-              Your password is required to be at least 4 characters.
+              Mật khẩu yêu cầu ít nhất 4 kí tự 
             </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.maxlength">
-              Your password cannot be longer than 50 characters.
+             Mật khẩu không dài quá 100 kí tự 
             </small>
           </div>
 
@@ -107,7 +107,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="confirmPassword">New password confirmation</label>
+          <label class="form-control-label" for="confirmPassword">Nhập lại mật khẩu </label>
           <input
             type="password"
             class="form-control"
@@ -125,28 +125,28 @@
             "
           >
             <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
-              Your confirmation password is required.
+              Nhập lại mật khẩu bắt buộc 
             </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.minlength">
-              Your confirmation password is required to be at least 4 characters.
+              Mật khẩu bắt buộc ít nhất 4 kí tự 
             </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength">
-              Your confirmation password cannot be longer than 50 characters.
+             Mật khẩu không dài quá 50 kí tự 
             </small>
           </div>
         </div>
 
-        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit">Register</button>
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit">Đăng kí </button>
       </form>
 
       <div class="mt-3 alert alert-warning">
-        <span>If you want to </span>
-        <a class="alert-link" routerLink="/login">sign in</a
+        <span>Nếu bạn muốn  </span>
+        <a class="alert-link" routerLink="/login">Đăng nhâp</a
         ><span
-          >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-          password="user").</span
+          >, Sử dụng tài khoản mặc định:<br />- Nhân viên (tên đăng nhập ="admin" and mật khẩu ="admin") <br />- Khách hàng (tên đăng nhập ="user" and
+          mật khẩu ="user").</span
         >
       </div>
     </div>

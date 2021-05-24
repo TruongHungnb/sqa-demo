@@ -15,6 +15,7 @@ public class HoGiaDinh implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id" , unique = true, nullable = false)
     private Long id;
 
     @Column(name = "ten_chu_ho")
@@ -50,7 +51,27 @@ public class HoGiaDinh implements Serializable {
     @OneToOne(mappedBy = "giadinh")
     private HoaDon hoadongd;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+ 
+
+	public HoGiaDinh() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public HoGiaDinh(String tenChuHo, String maHo, String soCanCuoc, String loaiHo, String soHoNgheo, String email,
+			String sdt, String diaChi) {
+		super();
+		this.tenChuHo = tenChuHo;
+		this.maHo = maHo;
+		this.soCanCuoc = soCanCuoc;
+		this.loaiHo = loaiHo;
+		this.soHoNgheo = soHoNgheo;
+		this.email = email;
+		this.sdt = sdt;
+		this.diaChi = diaChi;
+	}
+
+	// jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }

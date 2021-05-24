@@ -13,5 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootTest(classes = BillApp.class)
+
 public @interface IntegrationTest {
 }

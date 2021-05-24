@@ -53,11 +53,15 @@ public class HoGiaDinhResource {
         if (hoGiaDinh.getId() != null) {
             throw new BadRequestAlertException("A new hoGiaDinh cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        HoGiaDinh result = hoGiaDinhRepository.save(hoGiaDinh);
+
+            HoGiaDinh result = hoGiaDinhRepository.save(hoGiaDinh);
+
+
         return ResponseEntity
             .created(new URI("/api/ho-gia-dinhs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
+
     }
 
     /**

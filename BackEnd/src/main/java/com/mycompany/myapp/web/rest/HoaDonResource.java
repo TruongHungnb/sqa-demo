@@ -49,7 +49,8 @@ public class HoaDonResource {
      * {@code POST  /hoa-dons} : Create a new hoaDon.
      *
      * @param hoaDon the hoaDon to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new hoaDon, or with status {@code 400 (Bad Request)} if the hoaDon has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new hoaDon,
+     * or with status {@code 400 (Bad Request)} if the hoaDon has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/hoa-dons")
@@ -58,7 +59,7 @@ public class HoaDonResource {
         if (hoaDon.getId() != null) {
             throw new BadRequestAlertException("A new hoaDon cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        HoaDon result = hoaDonRepository.save(hoaDon);
+        HoaDon result = hoaDonRepository.saveAndFlush(hoaDon);
         return ResponseEntity
             .created(new URI("/api/hoa-dons/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -112,17 +113,17 @@ public class HoaDonResource {
              hoaDon.setTienThue(thue);
              hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
          }
-        
+
          else {
          	long tien = 10*bac1 + 10*bac2 + 10*bac3 +(soNuoc-30)*bac4;
          	long thue = (10*thue1 + 10*thue2 + 10*thue3 +(soNuoc-30)*thue4)*15;
          	hoaDon.setThanhTien(tien);
              hoaDon.setTienThue(thue);
              hoaDon.setTongTien(hoaDon.getThanhTien()+ hoaDon.getTienThue());
-         	
+
          }
         }
-       
+
 
         HoaDon result = hoaDonRepository.save(hoaDon);
         return ResponseEntity
@@ -178,12 +179,8 @@ public class HoaDonResource {
                     long soNuoc = (long) (hoaDon.getChiSoMoi() - hoaDon.getChiSoCu());
                     System.out.println(soNuoc);
                     existingHoaDon.setSoNuoc(soNuoc);
-                    
-//                    if (hoaDon.getSoNuoc() != null) {
-//                    	long soNuoc = (long) (hoaDon.getChiSoMoi() - hoaDon.getChiSoCu());
-//                       //existingHoaDon.setSoNuoc(hoaDon.getSoNuoc());
-//                    	existingHoaDon.setSoNuoc(soNuoc);
-//                    }
+
+
                     if (hoaDon.getThanhTien() != null) {
                         existingHoaDon.setThanhTien(hoaDon.getThanhTien());
                     }
@@ -249,6 +246,6 @@ public class HoaDonResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
-        	
+
     }
 }

@@ -2,12 +2,15 @@ package com.mycompany.myapp.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.mycompany.myapp.IntegrationTest;
 import com.mycompany.myapp.domain.HoGiaDinh;
 import com.mycompany.myapp.repository.HoGiaDinhRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -29,7 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 @AutoConfigureMockMvc
 @WithMockUser
 class HoGiaDinhResourceIT {
-
+//    private static final Long DEFAULT_ID = 1L;
+//    private static final Long UPDATED_ID = 2L;
     private static final String DEFAULT_TEN_CHU_HO = "AAAAAAAAAA";
     private static final String UPDATED_TEN_CHU_HO = "BBBBBBBBBB";
 
@@ -65,7 +69,7 @@ class HoGiaDinhResourceIT {
 
     @Autowired
     private EntityManager em;
-
+    // tao doi tuong gia lap
     @Autowired
     private MockMvc restHoGiaDinhMockMvc;
 
@@ -79,6 +83,7 @@ class HoGiaDinhResourceIT {
      */
     public static HoGiaDinh createEntity(EntityManager em) {
         HoGiaDinh hoGiaDinh = new HoGiaDinh()
+            
             .tenChuHo(DEFAULT_TEN_CHU_HO)
             .maHo(DEFAULT_MA_HO)
             .soCanCuoc(DEFAULT_SO_CAN_CUOC)
@@ -98,6 +103,7 @@ class HoGiaDinhResourceIT {
      */
     public static HoGiaDinh createUpdatedEntity(EntityManager em) {
         HoGiaDinh hoGiaDinh = new HoGiaDinh()
+            
             .tenChuHo(UPDATED_TEN_CHU_HO)
             .maHo(UPDATED_MA_HO)
             .soCanCuoc(UPDATED_SO_CAN_CUOC)
@@ -115,13 +121,14 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
     @Transactional
     void createHoGiaDinh() throws Exception {
         int databaseSizeBeforeCreate = hoGiaDinhRepository.findAll().size();
         // Create the HoGiaDinh
         restHoGiaDinhMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(hoGiaDinh)))
+            .perform(post(ENTITY_API_URL)
+                .contentType(MediaType.APPLICATION_JSON).
+                    content(TestUtil.convertObjectToJsonBytes(hoGiaDinh)))
             .andExpect(status().isCreated());
 
         // Validate the HoGiaDinh in the database
@@ -137,9 +144,8 @@ class HoGiaDinhResourceIT {
         assertThat(testHoGiaDinh.getSdt()).isEqualTo(DEFAULT_SDT);
         assertThat(testHoGiaDinh.getDiaChi()).isEqualTo(DEFAULT_DIA_CHI);
     }
-
+    // Tao tao ho gia dinh id ton tai san
     @Test
-    @Rollback
     @Transactional
     void createHoGiaDinhWithExistingId() throws Exception {
         // Create the HoGiaDinh with an existing ID
@@ -149,7 +155,9 @@ class HoGiaDinhResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restHoGiaDinhMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(hoGiaDinh)))
+            .perform(post(ENTITY_API_URL)
+                .contentType(MediaType.APPLICATION_JSON).
+                    content(TestUtil.convertObjectToJsonBytes(hoGiaDinh)))
             .andExpect(status().isBadRequest());
 
         // Validate the HoGiaDinh in the database
@@ -158,34 +166,47 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
     @Transactional
     void getAllHoGiaDinhs() throws Exception {
         // Initialize the database
-        hoGiaDinhRepository.saveAndFlush(hoGiaDinh);
+       // hoGiaDinhRepository.saveAndFlush(hoGiaDinh);
+    	  List<HoGiaDinh> candidates = ArrayList(
+                  new HoGiaDinh("HieuPV","BN001","1234","AAA","AAAAAA","AAAAAA","AAAAAA","AAAAA"));
+                 
 
-        // Get all the hoGiaDinhList
-        restHoGiaDinhMockMvc
-            .perform(get(ENTITY_API_URL + "?sort=id,desc"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(hoGiaDinh.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tenChuHo").value(hasItem(DEFAULT_TEN_CHU_HO)))
-            .andExpect(jsonPath("$.[*].maHo").value(hasItem(DEFAULT_MA_HO)))
-            .andExpect(jsonPath("$.[*].soCanCuoc").value(hasItem(DEFAULT_SO_CAN_CUOC)))
-            .andExpect(jsonPath("$.[*].loaiHo").value(hasItem(DEFAULT_LOAI_HO)))
-            .andExpect(jsonPath("$.[*].soHoNgheo").value(hasItem(DEFAULT_SO_HO_NGHEO)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].sdt").value(hasItem(DEFAULT_SDT)))
-            .andExpect(jsonPath("$.[*].diaChi").value(hasItem(DEFAULT_DIA_CHI)));
+          when(hoGiaDinhRepository.findAll()).thenReturn(candidates);
+            restHoGiaDinhMockMvc
+                .perform(get(ENTITY_API_URL + "?sort=id,desc"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.[*].id").value(hasItem(hoGiaDinh.getId().intValue())))
+                .andExpect(jsonPath("$.[*].tenChuHo").value(hasItem(DEFAULT_TEN_CHU_HO)))
+                .andExpect(jsonPath("$.[*].maHo").value(hasItem(DEFAULT_MA_HO)))
+                .andExpect(jsonPath("$.[*].soCanCuoc").value(hasItem(DEFAULT_SO_CAN_CUOC)))
+                .andExpect(jsonPath("$.[*].loaiHo").value(hasItem(DEFAULT_LOAI_HO)))
+                .andExpect(jsonPath("$.[*].soHoNgheo").value(hasItem(DEFAULT_SO_HO_NGHEO)))
+                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+                .andExpect(jsonPath("$.[*].sdt").value(hasItem(DEFAULT_SDT)))
+                .andExpect(jsonPath("$.[*].diaChi").value(hasItem(DEFAULT_DIA_CHI)));
+
+
     }
 
-    @Test
+        // Get all the hoGiaDinhList
+
+    private List<HoGiaDinh> ArrayList(HoGiaDinh hoGiaDinh2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Test
     @Rollback
     @Transactional
     void getHoGiaDinh() throws Exception {
         // Initialize the database
-        hoGiaDinhRepository.saveAndFlush(hoGiaDinh);
+          //  hoGiaDinhRepository.saveAndFlush(hoGiaDinh);
+       // hoGiaDinhRepository.findById();
+
 
         // Get the hoGiaDinh
         restHoGiaDinhMockMvc
@@ -204,7 +225,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void getNonExistingHoGiaDinh() throws Exception {
         // Get the hoGiaDinh
@@ -257,7 +278,6 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
     @Transactional
     void putNonExistingHoGiaDinh() throws Exception {
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
@@ -307,7 +327,8 @@ class HoGiaDinhResourceIT {
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restHoGiaDinhMockMvc
-            .perform(put(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(hoGiaDinh)))
+            .perform(put(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtil.convertObjectToJsonBytes(hoGiaDinh)))
             .andExpect(status().isMethodNotAllowed());
 
         // Validate the HoGiaDinh in the database
@@ -316,7 +337,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void partialUpdateHoGiaDinhWithPatch() throws Exception {
         // Initialize the database
@@ -353,11 +374,11 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void fullUpdateHoGiaDinhWithPatch() throws Exception {
         // Initialize the database
-        hoGiaDinhRepository.saveAndFlush(hoGiaDinh);
+//        hoGiaDinhRepository.saveAndFlush(hoGiaDinh);
 
         int databaseSizeBeforeUpdate = hoGiaDinhRepository.findAll().size();
 
@@ -459,7 +480,7 @@ class HoGiaDinhResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void deleteHoGiaDinh() throws Exception {
         // Initialize the database

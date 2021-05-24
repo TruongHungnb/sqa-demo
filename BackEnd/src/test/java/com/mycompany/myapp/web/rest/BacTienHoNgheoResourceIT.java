@@ -60,7 +60,11 @@ class BacTienHoNgheoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static BacTienHoNgheo createEntity(EntityManager em) {
-        BacTienHoNgheo bacTienHoNgheo = new BacTienHoNgheo().tenBac(DEFAULT_TEN_BAC).giaTriBac(DEFAULT_GIA_TRI_BAC);
+        BacTienHoNgheo bacTienHoNgheo = new BacTienHoNgheo()
+
+            .tenBac(DEFAULT_TEN_BAC)
+            .giaTriBac(DEFAULT_GIA_TRI_BAC);
+
         return bacTienHoNgheo;
     }
 
@@ -82,13 +86,14 @@ class BacTienHoNgheoResourceIT {
 
     @Test
     @Transactional
-    @Rollback
+
     void createBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeCreate = bacTienHoNgheoRepository.findAll().size();
         // Create the BacTienHoNgheo
         restBacTienHoNgheoMockMvc
             .perform(
-                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bacTienHoNgheo))
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(bacTienHoNgheo))
             )
             .andExpect(status().isCreated());
 
@@ -102,7 +107,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void createBacTienHoNgheoWithExistingId() throws Exception {
         // Create the BacTienHoNgheo with an existing ID
@@ -163,7 +168,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void putNewBacTienHoNgheo() throws Exception {
         // Initialize the database
@@ -194,7 +199,7 @@ class BacTienHoNgheoResourceIT {
     }
 
     @Test
-    @Rollback
+
     @Transactional
     void putNonExistingBacTienHoNgheo() throws Exception {
         int databaseSizeBeforeUpdate = bacTienHoNgheoRepository.findAll().size();

@@ -15,7 +15,8 @@ public class TaiKhoan implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-//    
+    @Column(name = "id" , unique = true, nullable = false)
+//
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
 //    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;

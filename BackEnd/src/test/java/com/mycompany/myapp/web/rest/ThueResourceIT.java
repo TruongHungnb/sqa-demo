@@ -60,7 +60,10 @@ class ThueResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Thue createEntity(EntityManager em) {
-        Thue thue = new Thue().tenThue(DEFAULT_TEN_THUE).giaTriThue(DEFAULT_GIA_TRI_THUE);
+        Thue thue = new Thue()
+
+            .tenThue(DEFAULT_TEN_THUE)
+            .giaTriThue(DEFAULT_GIA_TRI_THUE);
         return thue;
     }
 
@@ -81,13 +84,14 @@ class ThueResourceIT {
     }
 
     @Test
-    @Rollback
     @Transactional
     void createThue() throws Exception {
         int databaseSizeBeforeCreate = thueRepository.findAll().size();
         // Create the Thue
         restThueMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(thue)))
+            .perform(post(ENTITY_API_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtil.convertObjectToJsonBytes(thue)))
             .andExpect(status().isCreated());
 
         // Validate the Thue in the database
