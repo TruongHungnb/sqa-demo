@@ -86,7 +86,9 @@
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
       </button>
 
-      <button type="button" [routerLink]="['/hoa-don', hoaDon.id, 'edit']" class="btn btn-primary">
+      <button 
+      *jhiHasAnyAuthority="'ROLE_ADMIN'"
+      type="button" [routerLink]="['/hoa-don', hoaDon.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
       </button>
     </div>
