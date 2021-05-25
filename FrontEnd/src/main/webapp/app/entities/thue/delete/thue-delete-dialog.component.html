@@ -16,7 +16,9 @@
       <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
     </button>
 
-    <button id="jhi-confirm-delete-thue" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+    <button
+    *jhiHasAnyAuthority="'ROLE_ADMIN'"
+     id="jhi-confirm-delete-thue" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
       <fa-icon icon="times"></fa-icon>&nbsp;<span>Xóa</span>
     </button>
   </div>
