@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@link ThueResource} REST controller.
+ * Tests for the {@link ThueResource} REST controller.
  */
 @IntegrationTest
 @AutoConfigureMockMvc

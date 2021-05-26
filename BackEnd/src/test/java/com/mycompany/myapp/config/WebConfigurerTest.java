@@ -40,8 +40,10 @@ class WebConfigurerTest {
     @BeforeEach
     public void setup() {
         servletContext = spy(new MockServletContext());
-        doReturn(mock(FilterRegistration.Dynamic.class)).when(servletContext).addFilter(anyString(), any(Filter.class));
-        doReturn(mock(ServletRegistration.Dynamic.class)).when(servletContext).addServlet(anyString(), any(Servlet.class));
+        doReturn(mock(FilterRegistration.Dynamic.class))
+            .when(servletContext).addFilter(anyString(), any(Filter.class));
+        doReturn(mock(ServletRegistration.Dynamic.class))
+            .when(servletContext).addServlet(anyString(), any(Servlet.class));
 
         env = new MockEnvironment();
         props = new JHipsterProperties();
@@ -116,7 +118,8 @@ class WebConfigurerTest {
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new WebConfigurerTestController()).addFilters(webConfigurer.corsFilter()).build();
 
         mockMvc
-            .perform(get("/test/test-cors").header(HttpHeaders.ORIGIN, "other.domain.com"))
+            .perform(get("/test/test-cors")
+                .header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
             .andExpect(header().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
     }
@@ -125,22 +128,30 @@ class WebConfigurerTest {
     void shouldCorsFilterDeactivatedForNullAllowedOrigins() throws Exception {
         props.getCors().setAllowedOrigins(null);
 
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new WebConfigurerTestController()).addFilters(webConfigurer.corsFilter()).build();
+        MockMvc mockMvc = MockMvcBuilders
+            .standaloneSetup(new WebConfigurerTestController())
+            .addFilters(webConfigurer.corsFilter())
+            .build();
 
         mockMvc
             .perform(get("/api/test-cors").header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
-            .andExpect(header().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
+            .andExpect(header()
+                .doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
     }
 
     @Test
     void shouldCorsFilterDeactivatedForEmptyAllowedOrigins() throws Exception {
         props.getCors().setAllowedOrigins(new ArrayList<>());
 
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new WebConfigurerTestController()).addFilters(webConfigurer.corsFilter()).build();
+        MockMvc mockMvc = MockMvcBuilders
+            .standaloneSetup(new WebConfigurerTestController())
+            .addFilters(webConfigurer.corsFilter())
+            .build();
 
         mockMvc
-            .perform(get("/api/test-cors").header(HttpHeaders.ORIGIN, "other.domain.com"))
+            .perform(get("/api/test-cors")
+                .header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
             .andExpect(header().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
     }

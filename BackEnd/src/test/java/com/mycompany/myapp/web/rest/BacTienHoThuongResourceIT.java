@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@link BacTienHoThuongResource} REST controller.
+ * Tests for the {@link BacTienHoThuongResource} REST controller.
  */
 @IntegrationTest
 @AutoConfigureMockMvc
@@ -71,7 +71,9 @@ class BacTienHoThuongResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static BacTienHoThuong createUpdatedEntity(EntityManager em) {
-        BacTienHoThuong bacTienHoThuong = new BacTienHoThuong().tenBac(UPDATED_TEN_BAC).giaTriBac(UPDATED_GIA_TRI_BAC);
+        BacTienHoThuong bacTienHoThuong = new BacTienHoThuong()
+            .tenBac(UPDATED_TEN_BAC)
+            .giaTriBac(UPDATED_GIA_TRI_BAC);
         return bacTienHoThuong;
     }
 
@@ -175,7 +177,9 @@ class BacTienHoThuongResourceIT {
         BacTienHoThuong updatedBacTienHoThuong = bacTienHoThuongRepository.findById(bacTienHoThuong.getId()).get();
         // Disconnect from session so that the updates on updatedBacTienHoThuong are not directly saved in db
         em.detach(updatedBacTienHoThuong);
-        updatedBacTienHoThuong.tenBac(UPDATED_TEN_BAC).giaTriBac(UPDATED_GIA_TRI_BAC);
+        updatedBacTienHoThuong
+            .tenBac(UPDATED_TEN_BAC)
+            .giaTriBac(UPDATED_GIA_TRI_BAC);
 
         restBacTienHoThuongMockMvc
             .perform(

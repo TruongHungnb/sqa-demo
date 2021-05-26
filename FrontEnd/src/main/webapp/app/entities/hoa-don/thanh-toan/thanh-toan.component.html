@@ -11,9 +11,9 @@
             <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
           </div>
   
-          <div class="form-group">
+          <div class="form-group" hidden>
             <label class="form-control-label" for="field_giadinh">Hộ gia đình</label>
-            <select class="form-control" id="field_giadinh" data-cy="giadinh" name="giadinh" formControlName="giadinh">
+            <select class="form-control" id="field_giadinh" data-cy="giadinh" name="giadinh" formControlName="giadinh" >
               <option [ngValue]="null"></option>
               <option
                 [ngValue]="hoGiaDinhOption.id === editForm.get('giadinh')!.value?.id ? editForm.get('giadinh')!.value : hoGiaDinhOption"
@@ -25,7 +25,7 @@
           </div>
           <div class="form-group">
             <label class="form-control-label" for="field_tenChuHo">Tên chủ hộ</label>
-            <input type="text" class="form-control" name="tenChuHo" id="field_tenChuHo" data-cy="tenChuHo" formControlName="tenChuHo" />
+            <input type="text" class="form-control" name="tenChuHo" id="field_tenChuHo" data-cy="tenChuHo" formControlName="tenChuHo" [readonly]="true" />
           </div>
           
         
@@ -39,37 +39,38 @@
               id="field_thangSuDung"
               data-cy="thangSuDung"
               formControlName="thangSuDung"
+              
             />
           </div>
           <div class="form-group" >
             <label class="form-control-label" for="field_chiSoCu">Chỉ số cũ</label>
-            <input type="number" class="form-control" name="chiSoCu" id="field_chiSoCu" data-cy="chiSoCu" formControlName="chiSoCu" />
+            <input type="number" class="form-control" [readonly]="true" name="chiSoCu" id="field_chiSoCu" data-cy="chiSoCu" formControlName="chiSoCu" />
           </div>
   
           <div class="form-group" >
             <label class="form-control-label" for="field_chiSoMoi">Chỉ số mới</label>
-            <input type="number" class="form-control" name="chiSoMoi" id="field_chiSoMoi" data-cy="chiSoMoi" formControlName="chiSoMoi" />
+            <input type="number" class="form-control" [readonly]="true" name="chiSoMoi" id="field_chiSoMoi" data-cy="chiSoMoi" formControlName="chiSoMoi" />
           </div>
   
          
           <div class="form-group" >
             <label class="form-control-label" for="field_soNuoc">Số nước</label>
-            <input type="number" class="form-control" name="soNuoc" id="field_soNuoc" data-cy="soNuoc" formControlName="soNuoc" />
+            <input type="number" class="form-control" name="soNuoc"  id="field_soNuoc" data-cy="soNuoc" formControlName="soNuoc" />
           </div>
   
           <div class="form-group" >
-            <label class="form-control-label" for="field_thanhTien">Thành tiền</label>
-            <input type="number" class="form-control" name="thanhTien" id="field_thanhTien" data-cy="thanhTien" formControlName="thanhTien" />
+            <label class="form-control-label"  for="field_thanhTien">Thành tiền</label>
+            <input type="number" class="form-control"  [readonly]="true" name="thanhTien" id="field_thanhTien" data-cy="thanhTien" formControlName="thanhTien" />
           </div>
   
           <div class="form-group" >
             <label class="form-control-label" for="field_tienThue">Tiền thuế</label>
-            <input type="number" class="form-control" name="tienThue" id="field_tienThue" data-cy="tienThue" formControlName="tienThue" />
+            <input type="number" class="form-control"  [readonly]="true" name="tienThue" id="field_tienThue" data-cy="tienThue" formControlName="tienThue" />
           </div>
   
           <div class="form-group" >
-            <label class="form-control-label" for="field_tongTien">Tổng tiền</label>
-            <input type="number" class="form-control" name="tongTien" id="field_tongTien" data-cy="tongTien" formControlName="tongTien" />
+            <label class="form-control-label"  for="field_tongTien">Tổng tiền</label>
+            <input type="number" class="form-control"  [readonly]="true" name="tongTien" id="field_tongTien" data-cy="tongTien" formControlName="tongTien" />
           </div>
           <div class="form-group" >
             <label class="form-control-label" for="field_trangThaiThanhToan">Trạng thái thanh toán</label>

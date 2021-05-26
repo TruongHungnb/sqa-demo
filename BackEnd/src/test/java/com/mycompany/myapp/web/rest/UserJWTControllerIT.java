@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@link UserJWTController} REST controller.
+ * Tests for the {@link UserJWTController} REST controller.
  */
 @AutoConfigureMockMvc
 @IntegrationTest
@@ -52,7 +52,8 @@ class UserJWTControllerIT {
         login.setUsername("user-jwt-controller");
         login.setPassword("test");
         mockMvc
-            .perform(post("/api/authenticate").contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(login)))
+            .perform(post("/api/authenticate").contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtil.convertObjectToJsonBytes(login)))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id_token").isString())
             .andExpect(jsonPath("$.id_token").isNotEmpty())

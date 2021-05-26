@@ -897,6 +897,7 @@
             <build>
                 <plugins>
                     <plugin>
+
                         <artifactId>maven-clean-plugin</artifactId>
                         <configuration>
                             <filesets>

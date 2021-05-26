@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Integration tests for the {@link TaiKhoanResource} REST controller.
+ * Tests for the {@link TaiKhoanResource} REST controller.
  */
 @IntegrationTest
 @AutoConfigureMockMvc
@@ -87,7 +87,9 @@ class TaiKhoanResourceIT {
         int databaseSizeBeforeCreate = taiKhoanRepository.findAll().size();
         // Create the TaiKhoan
         restTaiKhoanMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(taiKhoan)))
+            .perform(post(ENTITY_API_URL)
+            		.contentType(MediaType.APPLICATION_JSON)
+            		.content(TestUtil.convertObjectToJsonBytes(taiKhoan)))
             .andExpect(status().isCreated());
 
         // Validate the TaiKhoan in the database
