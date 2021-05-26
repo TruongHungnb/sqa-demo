@@ -3,7 +3,7 @@
     <div class="col-md-8">
       <h1 data-cy="registerTitle">Đăng kí tài khoản</h1>
 
-      <div class="alert alert-success" *ngIf="success"><strong>Đăng kí thành công</strong> Vui lòng kiểm tra email để kích hoạt tài khoản .</div>
+      <div class="alert alert-success" *ngIf="success"><strong>Đăng kí thành công</strong> .Vui lòng kiểm tra email để kích hoạt tài khoản .</div>
 
       <div class="alert alert-danger" *ngIf="error"><strong>Đăng kí thất bại</strong> Vui lòng thử lại sau.</div>
 
@@ -62,7 +62,8 @@
             data-cy="email"
           />
 
-          <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+          <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)" class="  text-danger">
+            Email không đúng định dạng
             <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Email không được bỏ trống </small>
 
             <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Email không đúng định dạng  </small>
@@ -123,7 +124,9 @@
               registerForm.get('confirmPassword')!.invalid &&
               (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
             "
+            class="form-text text-danger"
           >
+          Mật khẩu không khớp nhau 
             <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
               Mật khẩu không được bỏ trống 
             </small>
@@ -139,6 +142,8 @@
         </div>
 
         <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary justify-content-center" data-cy="submit">Đăng kí </button>
+        
+      
       </form>
 
       <div class="mt-3 alert alert-warning">

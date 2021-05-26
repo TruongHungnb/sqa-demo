@@ -80,11 +80,11 @@
               <button
                 type="submit"
                 [routerLink]="['/ho-gia-dinh', hoGiaDinh.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn  btn-success btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Sửa</span>
+                <span class="d-none d-md-inline">Cập nhật</span>
               </button>
 
               <button type="submit" (click)="delete(hoGiaDinh)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">

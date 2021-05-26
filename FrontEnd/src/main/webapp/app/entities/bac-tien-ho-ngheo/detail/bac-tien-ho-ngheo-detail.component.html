@@ -30,8 +30,10 @@
 
       <button 
       *jhiHasAnyAuthority="'ROLE_ADMIN'"
-      type="button" [routerLink]="['/bac-tien-ho-ngheo', bacTienHoNgheo.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      type="button" 
+      
+      [routerLink]="['/bac-tien-ho-ngheo', bacTienHoNgheo.id, 'edit']" class="btn  btn-success">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Cập nhật </span>
       </button>
     </div>
   </div>

@@ -55,9 +55,11 @@
 
               <button 
               *jhiHasAnyAuthority="'ROLE_ADMIN'"
-              type="submit" [routerLink]="['/thue', thue.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+
+              type="submit" [routerLink]="['/thue', thue.id, 'edit']" 
+              class="btn  btn-success btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Sửa</span>
+                <span class="d-none d-md-inline">Cập nhật </span>
               </button>
 
               <button

@@ -9,6 +9,7 @@
       </button>
 
       <button
+      *jhiHasAnyAuthority="'ROLE_ADMIN'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-bac-tien-ho-thuong"
@@ -61,11 +62,11 @@
               *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/bac-tien-ho-thuong', bacTienHoThuong.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btn-success btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Sửa</span>
+                <span class="d-none d-md-inline">Cập nhật</span>
               </button>
 
               <button 

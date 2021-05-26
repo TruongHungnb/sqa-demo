@@ -226,14 +226,13 @@ public class UserService {
 
     /**
      * Update basic information (first name, last name, email, language) for the current user.
-     *
+     * @param userDTOFirstName
+     * @param name
+     * @param email
      * @param firstName first name of user.
      * @param lastName  last name of user.
-     * @param email     email id of user.
-     * @param langKey   language key.
-     * @param imageUrl  image URL of user.
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public void updateUser(String userDTOFirstName, String name, String email, String firstName, String lastName) {
         SecurityUtils
             .getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
@@ -241,11 +240,12 @@ public class UserService {
                 user -> {
                     user.setFirstName(firstName);
                     user.setLastName(lastName);
+
                     if (email != null) {
                         user.setEmail(email.toLowerCase());
                     }
-                    user.setLangKey(langKey);
-                    user.setImageUrl(imageUrl);
+//                    user.setLangKey(langKey);
+//                    user.setImageUrl(imageUrl);
                     log.debug("Changed Information for User: {}", user);
                 }
             );

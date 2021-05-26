@@ -3,35 +3,68 @@
     <div class="col-lg-6 col-md-8 col-sm-10">
       <h1 data-cy="loginTitle">Đăng nhập</h1>
       <div class="alert alert-danger" *ngIf="authenticationError" data-cy="loginError">
-        <strong>Đăng nhập thất bại</strong> Vui lòng kiểm tra thông tin đăng nhập của bạn và đăng nhập lại.
+        <strong>Đăng nhập thất bại.</strong> Vui lòng kiểm tra thông tin đăng nhập của bạn và đăng nhập lại.
       </div>
       <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
         <div class="form-group">
-          <label class="username-label" for="username">Tài khoản</label>
+          <label class="username-label" for="username">Tên đăng nhập (*)</label>
           <input
             type="text"
             class="form-control"
             name="username"
             id="username"
-            placeholder="Your username"
+           
             formControlName="username"
             #username
             data-cy="username"
           />
         </div>
+        <div *ngIf="loginForm.get('username')!.invalid && (loginForm.get('username')!.dirty || loginForm.get('username')!.touched)">
+          <small class="form-text text-danger" *ngIf="loginForm.get('username')?.errors?.required">Tên đăng nhập không được để trống </small>
+
+          <small class="form-text text-danger" *ngIf="loginForm.get('username')?.errors?.minlength">
+            Tên đăng nhập ít nhất 1 kí tự
+          </small>
+
+          <small class="form-text text-danger" *ngIf="loginForm.get('username')?.errors?.maxlength">
+           Tên đăng nhập không dài quá 50 kí tự 
+          </small>
+
+          <small class="form-text text-danger" *ngIf="loginForm.get('username')?.errors?.pattern">
+           Tên đăng nhập chỉ chứ kí tự chữ và số
+          </small>
+        </div>
 
         <div class="form-group">
-          <label for="password">Mật khẩu</label>
+          <label for="password">Mật khẩu (*)</label>
           <input
             type="password"
             class="form-control"
             name="password"
             id="password"
-            placeholder="Your password"
+           
             formControlName="password"
             data-cy="password"
           />
         </div>
+        <div
+        *ngIf="loginForm.get('password')!.invalid && (loginForm.get('password')!.dirty || loginForm.get('password')!.touched)"
+      >
+        <small class="form-text text-danger" *ngIf="loginForm.get('password')?.errors?.required"> Mật khẩu không được bỏ trống </small>
+
+        <small class="form-text text-danger" *ngIf="loginForm.get('password')?.errors?.minlength">
+          Mật khẩu yêu cầu ít nhất 4 kí tự 
+        </small>
+
+        <small class="form-text text-danger" *ngIf="loginForm.get('password')?.errors?.maxlength">
+         Mật khẩu không dài quá 100 kí tự 
+        </small>
+      
+      
+
+      
+    </div>
+        
 
         <div class="form-check">
           <label class="form-check-label" for="rememberMe">

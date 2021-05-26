@@ -34,7 +34,7 @@
       <thead>
         <tr>
           <th scope="col"><span>ID</span></th>
-          <th scope="col"><span>Gia đình</span></th>
+          <!-- <th scope="col"><span>Gia đình</span></th> -->
           <th scope="col"><span>Tên chủ hộ</span></th>
           <th scope="col"><span>Tháng sử dụng</span></th>
           <th scope="col"><span>Chỉ số mới</span></th>
@@ -58,11 +58,11 @@
           <td>
             <a [routerLink]="['/hoa-don', hoaDon.id, 'view']">{{ hoaDon.id }}</a>
           </td>
-          <td>
+          <!-- <td>
             <div *ngIf="hoaDon.giadinh">
               <a [routerLink]="['/ho-gia-dinh', hoaDon.giadinh?.id, 'view']">{{ hoaDon.giadinh?.id }}</a>
             </div>
-          </td>
+          </td> -->
           <td>{{ hoaDon.tenChuHo }}</td>
           <td>{{ hoaDon.thangSuDung }}</td>
           <td>{{ hoaDon.chiSoMoi }}</td>
@@ -106,11 +106,13 @@
               *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/hoa-don', hoaDon.id, 'update-nuoc']"
-                class="btn btn-primary btn-sm"
+                class="btn  btn-success btn-sm"
+                color = "#32CD32"
+                
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Cập nhật số nước</span>
+                <span class="d-none d-md-inline" >Cập nhật số nước</span>
               </button>
               <button
               hidden
@@ -123,7 +125,7 @@
                 <span class="d-none d-md-inline">Tính tiền nước</span>
               </button>
               <button
-              *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              *jhiHasAnyAuthority="'ROLE_USER'"
                 type="submit"
                 [routerLink]="['/hoa-don', hoaDon.id, 'thanh-toan']"
                 class="btn btn-secondary btn-sm"
